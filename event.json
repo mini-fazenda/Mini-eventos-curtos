@@ -9,7 +9,7 @@
   "feedCooldownSeconds": 60,
   "maxSpinsPerCycle": 13,
   "cycleCooldownHours": 13,
-  "luckProbability": 0.35,
+  "luckProbability": 0.3,
   "rewards": [
     {
       "id": "coins",
@@ -35,6 +35,10 @@
   "ui": {
     "banner": "assets/sexta13/banner.png",
     "cat": "assets/sexta13/gato.gif",
-    "background": "assets/sexta13/fundo.png"
+    "background": "assets/sexta13/fundo.png",
+    "catIdle": "assets/sexta13/gato-parado.gif",
+    "catEating": "assets/sexta13/gato-comendo.gif",
+    "diceIdle": "assets/sexta13/dado-parado.gif",
+    "diceRolling": "assets/sexta13/dado-girando.gif"
   }
 }
