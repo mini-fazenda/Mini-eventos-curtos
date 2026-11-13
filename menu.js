@@ -38,7 +38,7 @@ function demo(kind){const t=Date.now();if(state.lockUntil&&t>=state.lockUntil){s
  }
  // No modo prévia a ajuda depende do saldo restante para a próxima ração.
  const nextCost=state.spins<13?feedPrice(state):0;
- const needHelp=state.spins>=3&&state.spins<13&&state.coins<nextCost&&nextCost-state.coins<=1500&&state.spins-state.lastRescueSpin>=3;
+ const needHelp=state.spins>=1&&state.spins<13&&state.coins<nextCost&&nextCost-state.coins<=1500&&state.spins-state.lastRescueSpin>=3;
  if(needHelp){
    const gift=Math.max(500+Math.floor(Math.random()*1001),nextCost-state.coins);
    state.coins+=gift;state.lastRescueSpin=state.spins;reward='coins';
