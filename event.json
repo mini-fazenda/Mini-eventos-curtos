@@ -41,5 +41,23 @@
     "diceIdle": "assets/sexta13/dado-parado.gif",
     "diceRolling": "assets/sexta13/dado-girando.gif",
     "accept": "assets/sexta13/aceitar.png"
+  },
+  "feedPricing": {
+    "maxLowLevel": 20,
+    "lowLevel": [
+      150,
+      450,
+      700
+    ],
+    "highLevel": [
+      400,
+      700,
+      950
+    ],
+    "tiers": [
+      3,
+      6,
+      13
+    ]
   }
 }
