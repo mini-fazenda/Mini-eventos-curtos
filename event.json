@@ -6,7 +6,7 @@
   "endAt": "2026-11-16T00:00:00-03:00",
   "durationNote": "Altere startAt/endAt e active para ativar por 1, 2 ou 3 dias",
   "feedCost": 500,
-  "feedCooldownSeconds": 60,
+  "feedCooldownSeconds": 13,
   "maxSpinsPerCycle": 13,
   "cycleCooldownHours": 13,
   "luckProbability": 0.3,
