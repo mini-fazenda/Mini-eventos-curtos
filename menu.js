@@ -1,6 +1,10 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id),base='assets/sexta13/',query=new URLSearchParams(location.search),parentOrigin=query.get('origin'),standalone=window.parent===window;
-const DICE_MS=1300,CAT_MS=3170;let state={active:true,canPlay:true,spins:0,fed:false,coins:50000,level:1,nextFeedAt:0,lockUntil:0,noCatRolls:0,greenWins:0},pending=false,rolling=false,accepted=false,queuedResult=null,queuedState=null,rollStarted=0;
+// Aceite único por navegador e por edição do evento; não interfere no saldo nem no save.
+const ACCEPT_KEY='mf-mini-evento-sexta13-2026-11-aceito';
+const readAccepted=()=>{try{return localStorage.getItem(ACCEPT_KEY)==='1'}catch{return false}};
+const saveAccepted=()=>{try{localStorage.setItem(ACCEPT_KEY,'1')}catch{}};
+const DICE_MS=1300,CAT_MS=3170;let state={active:true,canPlay:true,spins:0,fed:false,coins:50000,level:1,nextFeedAt:0,lockUntil:0,noCatRolls:0,greenWins:0},pending=false,rolling=false,accepted=readAccepted(),queuedResult=null,queuedState=null,rollStarted=0;
 const feedPrice=s=>{const spins=Number(s?.spins)||0,level=Number(s?.level)||1,tier=spins<3?0:spins<6?1:2;return (level<=20?[150,450,700]:[400,700,950])[tier]};
 let demoLastFeed=0;const fmt=n=>Math.max(0,Math.ceil(n/1000))+'s';const post=(type,extra={})=>{if(!standalone)window.parent.postMessage({type,...extra},parentOrigin||'*')};
 function scale(){const v=$('viewport'),k=Math.min(1,v.clientWidth/600,v.clientHeight/560);$('menu').style.transform='scale('+k+')'}window.addEventListener('resize',scale);scale();
@@ -25,10 +29,11 @@ function demo(kind){const t=Date.now();if(state.lockUntil&&t>=state.lockUntil){s
  state.noCatRolls=reward==='rare'?0:Math.min(1000000,state.noCatRolls+1);if(state.spins===13){state.lockUntil=t+13*3600000;message+=' O gato descansará por 13 horas.'}queuedResult={message,state:{...state}}}}
 function action(kind){if(pending||rolling&&kind!=='roll')return;if(kind==='feed'){if(standalone)demo(kind);else{pending=true;animateCat();post('mf-mini-action',{action:kind,requestId:'s13-'+Date.now()})}render();return}
 if(kind==='roll'){if(!state.fed||pending)return;rolling=true;rollStarted=Date.now();showMessage('🎲 O dado está girando...');img('diceImg','dado-girando.gif');if(standalone)demo(kind);else{pending=true;post('mf-mini-action',{action:kind,requestId:'s13-'+Date.now()})}render();finalizeRoll()}}
-$('accept').addEventListener('click',()=>{accepted=true;$('intro').classList.add('hidden');$('game').classList.remove('hidden');post('mf-mini-open');render()});
-$('close').addEventListener('click',()=>{if(standalone){accepted=false;$('game').classList.add('hidden');$('intro').classList.remove('hidden')}else post('mf-mini-close')});
+function showGame(){accepted=true;$('intro').classList.add('hidden');$('game').classList.remove('hidden');post('mf-mini-open');render()}
+$('accept').addEventListener('click',()=>{saveAccepted();showGame()});
+$('close').addEventListener('click',()=>{if(standalone){if(accepted){$('game').classList.add('hidden');$('intro').classList.remove('hidden')}else{$('intro').classList.remove('hidden');$('game').classList.add('hidden')}}else post('mf-mini-close')});
 $('feed').addEventListener('click',()=>action('feed'));$('roll').addEventListener('click',()=>action('roll'));
 window.addEventListener('message',e=>{if(standalone||e.source!==window.parent||parentOrigin&&e.origin!==parentOrigin)return;const d=e.data;if(!d||typeof d!=='object')return;if(d.type==='mf-mini-state'){if(rolling){queuedState=d.state;return}state=d.state;pending=false;render()}if(d.type==='mf-mini-result'){if(rolling){queuedResult=d;return}pending=false;if(d.state)state=d.state;showMessage(d.message||'');render()}});
 setInterval(()=>{if(state.lockUntil&&Date.now()>=state.lockUntil&&standalone){state.spins=0;state.lockUntil=0;state.nextFeedAt=0;state.fed=false}render()},500);
-post('mf-mini-ready');if(standalone)showMessage('Prévia: simulação sem prêmios reais.');render();
+if(accepted)showGame();post('mf-mini-ready');if(standalone)showMessage('Prévia: simulação sem prêmios reais.');render();
 })();
