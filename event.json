@@ -1,0 +1,40 @@
+{
+  "id": "sexta-13-2026-11",
+  "title": "Sexta-feira 13 — Sorte ou Azar?",
+  "active": false,
+  "startAt": "2026-11-13T00:00:00-03:00",
+  "endAt": "2026-11-16T00:00:00-03:00",
+  "durationNote": "Altere startAt/endAt e active para ativar por 1, 2 ou 3 dias",
+  "feedCost": 500,
+  "feedCooldownSeconds": 60,
+  "maxSpinsPerCycle": 13,
+  "cycleCooldownHours": 13,
+  "luckProbability": 0.35,
+  "rewards": [
+    {
+      "id": "coins",
+      "weight": 40,
+      "label": "Moedas"
+    },
+    {
+      "id": "xp",
+      "weight": 35,
+      "label": "XP"
+    },
+    {
+      "id": "mini-grana",
+      "weight": 20,
+      "label": "Mini Granas"
+    },
+    {
+      "id": "rare",
+      "weight": 5,
+      "label": "Prêmio raro"
+    }
+  ],
+  "ui": {
+    "banner": "assets/sexta13/banner.png",
+    "cat": "assets/sexta13/gato.gif",
+    "background": "assets/sexta13/fundo.png"
+  }
+}
