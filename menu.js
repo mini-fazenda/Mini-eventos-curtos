@@ -42,7 +42,7 @@ function demo(kind){const t=Date.now();if(state.lockUntil&&t>=state.lockUntil){s
  if(needHelp){
    const gift=Math.max(500+Math.floor(Math.random()*1001),nextCost-state.coins);
    state.coins+=gift;state.lastRescueSpin=state.spins;reward='coins';
-   message='🪙 Ajuda para continuar! Você ganhou '+gift+' moedas!';
+   message='🍀 SORTE! Você ganhou '+gift+' moedas!';
  }
  state.noCatRolls=reward==='rare'?0:Math.min(1000000,state.noCatRolls+1);if(state.spins===13){state.lockUntil=t+13*3600000;message+=' O gato descansará por 13 horas.'}queuedResult={message,state:{...state}}}}
 function action(kind){if(pending||rolling)return;if(kind==='upgrade'){if(upgradeCost(state)===0)return;if(standalone)demo('upgrade');else{pending=true;post('mf-mini-action',{action:kind,requestId:'s13-'+Date.now()})}render();return}if(kind==='feed'){if(standalone)demo(kind);else{pending=true;animateCat();post('mf-mini-action',{action:kind,requestId:'s13-'+Date.now()})}render();return}
