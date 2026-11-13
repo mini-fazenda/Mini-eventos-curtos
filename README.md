@@ -1,5 +1,5 @@
 # Mini-eventos curtos — Vila da Colheita
-
+Link do menu: https://mini-fazenda.github.io/Mini-eventos-curtos/menu.html
 Pacote externo para eventos de 1 a 3 dias. Independente do jogo principal.
 
 ## Sexta-feira 13
