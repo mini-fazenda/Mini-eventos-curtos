@@ -33,12 +33,13 @@
     }
   ],
   "ui": {
-    "banner": "assets/sexta13/banner.png",
-    "cat": "assets/sexta13/gato.gif",
-    "background": "assets/sexta13/fundo.png",
+    "banner": "assets/sexta13/intro.png",
+    "cat": "assets/sexta13/gato-parado.gif",
+    "background": "assets/sexta13/game.png",
     "catIdle": "assets/sexta13/gato-parado.gif",
     "catEating": "assets/sexta13/gato-comendo.gif",
     "diceIdle": "assets/sexta13/dado-parado.gif",
-    "diceRolling": "assets/sexta13/dado-girando.gif"
+    "diceRolling": "assets/sexta13/dado-girando.gif",
+    "accept": "assets/sexta13/aceitar.png"
   }
 }
