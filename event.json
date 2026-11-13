@@ -1,7 +1,7 @@
 {
   "id": "sexta-13-2026-11",
   "title": "Sexta-feira 13 — Sorte ou Azar?",
-  "active": false,
+  "active": true,
   "startAt": "2026-11-13T00:00:00-03:00",
   "endAt": "2026-11-16T00:00:00-03:00",
   "durationNote": "Altere startAt/endAt e active para ativar por 1, 2 ou 3 dias",
